@@ -1,6 +1,7 @@
 import React from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
+import ScreenContainer from "../components/ScreenContainer";
 import SectionCard from "../components/SectionCard";
 import { colors, spacing } from "../constants/theme";
 
@@ -29,7 +30,7 @@ function SpecSection({ title, children }) {
 export default function ResultScreen({ spec, onRestart, onBackToQuestions }) {
   if (!spec) {
     return (
-      <View style={styles.emptyContainer}>
+      <ScreenContainer centered contentContainerStyle={styles.emptyContainer}>
         <SectionCard>
           <Text style={styles.emptyTitle}>Henüz sonuç oluşmadı</Text>
           <Text style={styles.emptyText}>
@@ -38,12 +39,12 @@ export default function ResultScreen({ spec, onRestart, onBackToQuestions }) {
           </Text>
           <PrimaryButton title="Başa Dön" onPress={onRestart} />
         </SectionCard>
-      </View>
+      </ScreenContainer>
     );
   }
 
   return (
-    <ScrollView contentContainerStyle={styles.content}>
+    <ScreenContainer scroll contentContainerStyle={styles.content}>
       <View style={styles.header}>
         <Text style={styles.caption}>Nokta Capture sonucu</Text>
         <Text style={styles.title}>Tek sayfalık ürün özeti</Text>
@@ -87,18 +88,15 @@ export default function ResultScreen({ spec, onRestart, onBackToQuestions }) {
         <PrimaryButton title="Yeniden Başlat" onPress={onRestart} />
         <PrimaryButton title="Cevapları Düzenle" variant="ghost" onPress={onBackToQuestions} />
       </View>
-    </ScrollView>
+    </ScreenContainer>
   );
 }
 
 const styles = StyleSheet.create({
   content: {
-    padding: spacing.lg,
-    gap: spacing.lg,
-    paddingBottom: spacing.xxl
+    gap: spacing.lg
   },
   header: {
-    paddingTop: spacing.sm,
     gap: spacing.xs
   },
   caption: {
@@ -175,8 +173,6 @@ const styles = StyleSheet.create({
     gap: spacing.sm
   },
   emptyContainer: {
-    flex: 1,
-    padding: spacing.lg,
     justifyContent: "center"
   },
   emptyTitle: {

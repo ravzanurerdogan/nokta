@@ -1,13 +1,12 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { SafeAreaView, StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import HomeScreen from "./screens/HomeScreen";
 import QuestionsScreen from "./screens/QuestionsScreen";
 import LoadingScreen from "./screens/LoadingScreen";
 import ResultScreen from "./screens/ResultScreen";
 import { FOLLOW_UP_QUESTIONS, INITIAL_ANSWERS } from "./data/questions";
 import { generateSpec } from "./utils/enrichment";
-import { colors } from "./constants/theme";
 
 export default function App() {
   const [screen, setScreen] = useState("home");
@@ -90,7 +89,7 @@ export default function App() {
   };
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaProvider>
       <StatusBar style="dark" />
 
       {screen === "home" && <HomeScreen initialIdea={idea} onStart={handleStart} />}
@@ -112,13 +111,6 @@ export default function App() {
       {screen === "result" && (
         <ResultScreen spec={spec} onRestart={handleRestart} onBackToQuestions={handleEditAnswers} />
       )}
-    </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: colors.background
-  }
-});

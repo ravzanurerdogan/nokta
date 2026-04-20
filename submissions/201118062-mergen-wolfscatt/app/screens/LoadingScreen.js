@@ -1,5 +1,6 @@
 import React from "react";
 import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
+import ScreenContainer from "../components/ScreenContainer";
 import SectionCard from "../components/SectionCard";
 import { colors, spacing } from "../constants/theme";
 
@@ -9,7 +10,7 @@ function SkeletonLine({ width }) {
 
 export default function LoadingScreen({ idea }) {
   return (
-    <View style={styles.container}>
+    <ScreenContainer centered contentContainerStyle={styles.content}>
       <SectionCard style={styles.card}>
         <View style={styles.iconWrap}>
           <ActivityIndicator size="large" color={colors.primary} />
@@ -29,14 +30,12 @@ export default function LoadingScreen({ idea }) {
           <SkeletonLine width="68%" />
         </View>
       </SectionCard>
-    </View>
+    </ScreenContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: spacing.lg,
+  content: {
     justifyContent: "center"
   },
   card: {

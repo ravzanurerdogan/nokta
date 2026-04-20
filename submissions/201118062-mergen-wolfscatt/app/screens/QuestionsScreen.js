@@ -1,7 +1,8 @@
 import React, { useMemo, useState } from "react";
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
 import ProgressDots from "../components/ProgressDots";
+import ScreenContainer from "../components/ScreenContainer";
 import SectionCard from "../components/SectionCard";
 import TextAreaField from "../components/TextAreaField";
 import { colors, spacing } from "../constants/theme";
@@ -61,11 +62,7 @@ export default function QuestionsScreen({
   };
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : undefined}
-      style={styles.container}
-    >
-      <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
+    <ScreenContainer scroll contentContainerStyle={styles.content}>
         <View style={styles.header}>
           <Text style={styles.caption}>Takip soruları</Text>
           <Text style={styles.ideaText}>{idea}</Text>
@@ -106,19 +103,14 @@ export default function QuestionsScreen({
             </View>
           </View>
         </SectionCard>
-      </ScrollView>
-    </KeyboardAvoidingView>
+    </ScreenContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
   content: {
-    padding: spacing.lg,
     gap: spacing.lg,
-    paddingBottom: spacing.xxl
+    justifyContent: "space-between"
   },
   header: {
     gap: spacing.xs

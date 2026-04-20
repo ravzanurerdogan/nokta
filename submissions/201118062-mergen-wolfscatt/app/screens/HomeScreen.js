@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import ExampleIdeaCard from "../components/ExampleIdeaCard";
 import PrimaryButton from "../components/PrimaryButton";
+import ScreenContainer from "../components/ScreenContainer";
 import SectionCard from "../components/SectionCard";
 import TextAreaField from "../components/TextAreaField";
 import { colors, spacing } from "../constants/theme";
@@ -44,11 +45,7 @@ export default function HomeScreen({ initialIdea, onStart }) {
   };
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : undefined}
-      style={styles.container}
-    >
-      <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
+    <ScreenContainer scroll contentContainerStyle={styles.content}>
         <View style={styles.hero}>
           <Text style={styles.eyebrow}>Track A teslimi</Text>
           <Text style={styles.title}>Nokta Capture</Text>
@@ -94,22 +91,15 @@ export default function HomeScreen({ initialIdea, onStart }) {
             odağa alıyor: fikir girişi, soru akışı ve tek sayfalık özet.
           </Text>
         </SectionCard>
-      </ScrollView>
-    </KeyboardAvoidingView>
+    </ScreenContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
   content: {
-    padding: spacing.lg,
-    gap: spacing.lg,
-    paddingBottom: spacing.xxl
+    gap: spacing.lg
   },
   hero: {
-    paddingTop: spacing.md,
     gap: spacing.sm
   },
   eyebrow: {
