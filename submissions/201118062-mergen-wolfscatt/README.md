@@ -80,7 +80,7 @@ Not: Challenge kuralına uygun şekilde root klasör değiştirilmemiştir. Tüm
 
 ## APK
 
-`[APK dosya yolu ]`
+[APK dosya yolu ](https://github.com/wolfscatt/nokta/blob/main/submissions/201118062-mergen-wolfscatt/app/app-release.apk)
 
 ## Decision Log
 
