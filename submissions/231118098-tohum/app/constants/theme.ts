@@ -1,53 +1,73 @@
-/**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
- */
+// Tohum design tokens — Stitch palette ported verbatim into code.
+// UI is single-theme (dark) intentionally; no light/dark branching.
 
-import { Platform } from 'react-native';
+export const colors = {
+  primary: '#2F7AC2',
+  secondary: '#627997',
+  tertiary: '#898200',
 
-const tintColorLight = '#0a7ea4';
-const tintColorDark = '#fff';
+  bg: '#0D1117',
+  surface: '#161B22',
+  surfaceRaised: '#1C2128',
+  border: '#262C33',
+  divider: '#1F2428',
 
-export const Colors = {
-  light: {
-    text: '#11181C',
-    background: '#fff',
-    tint: tintColorLight,
-    icon: '#687076',
-    tabIconDefault: '#687076',
-    tabIconSelected: tintColorLight,
-  },
-  dark: {
-    text: '#ECEDEE',
-    background: '#151718',
-    tint: tintColorDark,
-    icon: '#9BA1A6',
-    tabIconDefault: '#9BA1A6',
-    tabIconSelected: tintColorDark,
-  },
-};
+  text: '#E6EDF3',
+  textMuted: '#8B949E',
+  textDim: '#484F58',
 
-export const Fonts = Platform.select({
-  ios: {
-    /** iOS `UIFontDescriptorSystemDesignDefault` */
-    sans: 'system-ui',
-    /** iOS `UIFontDescriptorSystemDesignSerif` */
-    serif: 'ui-serif',
-    /** iOS `UIFontDescriptorSystemDesignRounded` */
-    rounded: 'ui-rounded',
-    /** iOS `UIFontDescriptorSystemDesignMonospaced` */
-    mono: 'ui-monospace',
-  },
-  default: {
-    sans: 'normal',
-    serif: 'serif',
-    rounded: 'normal',
-    mono: 'monospace',
-  },
-  web: {
-    sans: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
-    serif: "Georgia, 'Times New Roman', serif",
-    rounded: "'SF Pro Rounded', 'Hiragino Maru Gothic ProN', Meiryo, 'MS PGothic', sans-serif",
-    mono: "SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
-  },
-});
+  success: '#238636',
+  warn: '#D29922',
+  danger: '#F85149',
+
+  // semantic roles used across screens
+  bubbleUser: '#2F7AC2',
+  bubbleAi: '#1C2128',
+  suggestionChip: '#898200',
+  suggestionChipSurface: '#1F2A16',
+} as const;
+
+export const typography = {
+  headline: 'Manrope_700Bold',
+  headlineMedium: 'Manrope_600SemiBold',
+  body: 'Inter_400Regular',
+  bodyMedium: 'Inter_500Medium',
+  bodySemi: 'Inter_600SemiBold',
+  label: 'Inter_500Medium',
+  mono: 'Menlo',
+} as const;
+
+export const fontSize = {
+  xs: 11,
+  sm: 13,
+  base: 15,
+  md: 16,
+  lg: 18,
+  xl: 22,
+  xxl: 28,
+  display: 44,
+} as const;
+
+export const spacing = {
+  xs: 4,
+  sm: 8,
+  md: 12,
+  lg: 16,
+  xl: 20,
+  xxl: 24,
+  xxxl: 32,
+} as const;
+
+export const radius = {
+  sm: 6,
+  md: 10,
+  lg: 14,
+  xl: 18,
+  pill: 999,
+} as const;
+
+export const timing = {
+  fast: 150,
+  base: 220,
+  slow: 320,
+} as const;

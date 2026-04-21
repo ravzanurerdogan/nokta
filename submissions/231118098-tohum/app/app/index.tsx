@@ -1,5 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 
+import { colors, fontSize, spacing, typography } from '@/constants/theme';
+
 export default function Index() {
   return (
     <View style={styles.container}>
@@ -14,19 +16,21 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#0D1117',
-    paddingHorizontal: 24,
+    backgroundColor: colors.bg,
+    paddingHorizontal: spacing.xxl,
   },
   brand: {
-    fontSize: 48,
+    fontFamily: typography.headline,
+    fontSize: fontSize.display,
     fontWeight: '700',
-    color: '#2F7AC2',
+    color: colors.primary,
     letterSpacing: -1,
   },
   tagline: {
-    marginTop: 12,
-    fontSize: 16,
-    color: '#627997',
+    fontFamily: typography.body,
+    marginTop: spacing.md,
+    fontSize: fontSize.md,
+    color: colors.secondary,
     textAlign: 'center',
   },
 });
