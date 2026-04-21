@@ -1,6 +1,6 @@
 import * as Clipboard from 'expo-clipboard';
 import { router, useLocalSearchParams } from 'expo-router';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   Pressable,
   ScrollView,
@@ -13,6 +13,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { SectionCard } from '@/components/spec/section-card';
 import { parseIdeaMd, serializeIdeaMd } from '@/constants/idea-md';
 import { colors, fontSize, radius, spacing, typography } from '@/constants/theme';
+import { generateSessionId, saveSessionIfNew } from '@/services/storage';
 
 export default function Spec() {
   const { md } = useLocalSearchParams<{ md: string }>();
@@ -20,6 +21,17 @@ export default function Spec() {
 
   const raw = typeof md === 'string' ? md : '';
   const document = useMemo(() => parseIdeaMd(raw), [raw]);
+
+  useEffect(() => {
+    if (!raw) return;
+    void saveSessionIfNew({
+      id: generateSessionId(),
+      savedAt: Date.now(),
+      title: document.title,
+      tagline: document.tagline,
+      idea_md: raw,
+    });
+  }, [raw, document.title, document.tagline]);
 
   const onCopy = async () => {
     await Clipboard.setStringAsync(serializeIdeaMd(raw));

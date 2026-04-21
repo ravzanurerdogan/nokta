@@ -37,6 +37,16 @@ export default function DotEntry() {
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         style={styles.root}
       >
+        <View style={styles.topBar}>
+          <View style={styles.topBarSpacer} />
+          <Pressable
+            onPress={() => router.push('/history')}
+            hitSlop={8}
+            style={styles.historyLink}
+          >
+            <Text style={styles.historyLinkText}>Fikirlerim →</Text>
+          </Pressable>
+        </View>
         <View style={styles.header}>
           <Text style={styles.brand}>Tohum</Text>
           <Text style={styles.tagline}>Fikrin bir nokta ile başlar.</Text>
@@ -91,12 +101,25 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     paddingHorizontal: spacing.xxl,
-    paddingTop: spacing.xxl,
+    paddingTop: spacing.md,
     paddingBottom: spacing.lg,
+  },
+  topBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: spacing.sm,
+  },
+  topBarSpacer: { width: 80 },
+  historyLink: { paddingHorizontal: spacing.sm, paddingVertical: spacing.xs },
+  historyLinkText: {
+    fontFamily: typography.bodyMedium,
+    fontSize: fontSize.sm,
+    color: colors.primary,
   },
   header: {
     alignItems: 'center',
-    paddingVertical: spacing.lg,
+    paddingVertical: spacing.md,
   },
   brand: {
     fontFamily: typography.headline,
