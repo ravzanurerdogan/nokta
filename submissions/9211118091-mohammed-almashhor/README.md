@@ -38,6 +38,7 @@ npm install
 npx expo start -c
 ```
 Terminalde çıkan QR kodu, mobil cihazınızdaki Expo Go uygulaması ile taratarak uygulamayı anında görüntüleyebilirsiniz.
+🔗 **Expo Local Dev Linki:** `exp://localhost:8081` (QR Okutma Alternatifi)
 
 ## 📦 İndirilebilir APK Dosyası
 Uygulamanın en güncel test sürümünü (APK) teslimat klasöründe bulabilirsiniz: 
