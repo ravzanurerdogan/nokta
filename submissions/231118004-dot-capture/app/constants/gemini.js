@@ -1,3 +1,3 @@
-export const GEMINI_API_KEY = 'AIzaSyCAm9C4yfW7kGkK1p7pJ0kWGpJ9K6EBi_k';
+export const GEMINI_API_KEY = 'BURAYA_KENDI_API_ANAHTARINIZI_YAZIN';
 export const GEMINI_MODEL = 'gemini-2.0-flash';
 
