@@ -1,6 +1,5 @@
-const API_KEY = process.env.EXPO_PUBLIC_ANTHROPIC_API_KEY ?? '';
-const API_URL = 'https://api.anthropic.com/v1/messages';
-const MODEL = 'claude-haiku-4-5-20251001';
+const API_KEY = process.env.EXPO_PUBLIC_GEMINI_API_KEY ?? '';
+const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
 
 export interface QA {
   question: string;
@@ -15,29 +14,24 @@ const QUESTION_CATEGORIES = [
   'Success Metric: How will you measure if this idea succeeded?',
 ];
 
-async function callClaude(systemPrompt: string, userMessage: string): Promise<string> {
+async function callGemini(systemPrompt: string, userMessage: string): Promise<string> {
   const response = await fetch(API_URL, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': API_KEY,
-      'anthropic-version': '2023-06-01',
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      model: MODEL,
-      max_tokens: 512,
-      system: systemPrompt,
-      messages: [{ role: 'user', content: userMessage }],
+      systemInstruction: { parts: [{ text: systemPrompt }] },
+      contents: [{ role: 'user', parts: [{ text: userMessage }] }],
+      generationConfig: { maxOutputTokens: 512, temperature: 0.7 },
     }),
   });
 
   if (!response.ok) {
     const err = await response.text();
-    throw new Error(`Claude API error ${response.status}: ${err}`);
+    throw new Error(`Gemini API error ${response.status}: ${err}`);
   }
 
   const data = await response.json();
-  return data.content[0].text as string;
+  return data.candidates[0].content.parts[0].text as string;
 }
 
 export async function askNextQuestion(
@@ -57,7 +51,7 @@ Keep the question under 20 words. Do NOT give explanations or preamble — just 
 
   const userMessage = `Raw idea: "${idea}"${history ? `\n\nPrevious Q&A:\n${history}` : ''}`;
 
-  return callClaude(systemPrompt, userMessage);
+  return callGemini(systemPrompt, userMessage);
 }
 
 export async function generateSpec(idea: string, qas: QA[]): Promise<string> {
@@ -76,5 +70,5 @@ Be concrete and direct. No fluff. Total length: ~300 words.`;
 
   const userMessage = `Raw idea: "${idea}"\n\nEngineering Q&A:\n${history}`;
 
-  return callClaude(systemPrompt, userMessage);
+  return callGemini(systemPrompt, userMessage);
 }
