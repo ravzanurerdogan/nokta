@@ -2,7 +2,6 @@
 
 > **Öğrenci No:** 231118003
 > **Track:** A — Dot Capture & Enrich
-> **Süre:** Yaklaşık 2.5 Saat (Geliştirme + Build + Optimizasyon)
 
 ---
 
@@ -62,5 +61,5 @@ Ham fikirleri ("nokta") yakalayıp, mühendislik disiplini ile sorgulayan ve aya
 
 ---
 
-## ✨ Bonus Capability (+10 Puan)
+## ✨ Bonus Capability 
 **Engineering-Guided AI Loop:** Uygulama sadece metin üretmez; kullanıcıyı 5 aşamalı bir "Engineering Trace" sürecine sokar. Bu süreç, fikrin "slop" (çöp veri) olmasını engelleyerek gerçek bir ürün iskeleti oluşmasını sağlar.
