@@ -16,7 +16,7 @@ PitchSieve is an offline Expo / React Native app that reads a startup pitch para
 
 ## 60-Second Demo Video
 
-- TODO: Add 60-second demo video link
+- Demo video: https://www.youtube.com/shorts/HXngcqEFLow
 
 ## Decision Log
 
